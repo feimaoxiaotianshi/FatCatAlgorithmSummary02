@@ -96,8 +96,8 @@ class Solution:{
             int tmp = numbers[i];
             do{
                 if(number[tmp] == tmp)return tmp;
-                swap(tmp, numbers[tmp]);
-            }while(numbers[i] != i)
+                swap(tmp, numbers[tmp]);  //善用辅助函数
+            }while(numbers[i] != i);  //注意这个分号
             
         }
         
@@ -165,5 +165,39 @@ True
 
 Because of the speciality of this problem condition, we can use a solution similar to "binary search".
 
-The common solution of a searching problem is DFS. However, for this problem, we can choose another way for the pointer to explore the 
+The common solution of a searching problem is DFS. However, for this problem, we can choose another way.
+
+
+
+。
+
+。
+
+。
+
+
+
+**Solution**
+
+We start searching at the right-up corner(or left-down corner), other place may cause layers of recursion.
+
+```java
+public boolean Find(int target, int[][] matrix) {
+    if (matrix == null || matrix.length == 0 || matrix[0].length == 0)
+        return false;
+    int rows = matrix.length, cols = matrix[0].length;
+    int r = 0, c = cols - 1; // 从右上角开始
+    while (r <= rows - 1 && c >= 0) {
+        if (target == matrix[r][c])
+            return true;
+        else if (target > matrix[r][c])
+            r++;
+        else
+            c--;
+    }
+    return false;
+}
+```
+
+
 
